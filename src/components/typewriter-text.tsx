@@ -44,8 +44,23 @@ export function TerminalText({
   const [charIndex, setCharIndex] = React.useState(0);
   const [isDone, setIsDone] = React.useState(false);
   const [showCursorState, setShowCursor] = React.useState(true);
+  const [isMobile, setIsMobile] = React.useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const soundRef = React.useRef<any | null>(null);
+
+  // Responsive speed adjustment
+  const responsiveSpeed = isMobile ? speed * 0.8 : speed;
+  const responsiveStaggerDelay = isMobile ? staggerDelay * 0.7 : staggerDelay;
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const textArray = React.useMemo(() => 
     Array.isArray(text) ? text : [text], 
@@ -66,7 +81,7 @@ export function TerminalText({
         if (displayed.length < textArray.length) {
           setTimeout(() => {
             setDisplayed(prev => [...prev, textArray[prev.length]]);
-          }, staggerDelay);
+          }, responsiveStaggerDelay);
         }
       }, delay);
       return () => clearTimeout(timer);
@@ -75,7 +90,7 @@ export function TerminalText({
     // Terminal type (default)
     const cursorTimer = setInterval(() => setShowCursor((s) => !s), 500);
     return () => clearInterval(cursorTimer);
-  }, [type, delay, staggerDelay, textArray, displayed.length, onComplete]);
+  }, [type, delay, responsiveStaggerDelay, textArray, displayed.length, onComplete]);
 
   React.useEffect(() => {
     let mounted = true;
@@ -119,10 +134,10 @@ export function TerminalText({
       } else {
         setCharIndex((c) => c + 1);
       }
-    }, speed);
+    }, responsiveSpeed);
 
     return () => clearTimeout(timer);
-  }, [charIndex, lineIndex, textArray, speed, type, isDone, onComplete, playSound]);
+  }, [charIndex, lineIndex, textArray, responsiveSpeed, type, isDone, onComplete, playSound]);
 
   if (type === "instant") {
     return (
