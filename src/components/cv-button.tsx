@@ -16,15 +16,24 @@ export function CVButton() {
   };
 
   return (
-    <TerminalButton 
-      variant="outline"
-      onClick={handleCVAction}
-      className="w-full border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-black transition-all font-mono"
-      delay={4700}
-      speed={25}
-      textType="terminal"
-    >
-      [6] CV
-    </TerminalButton>
+    <div className="w-full">
+      <TerminalButton 
+        variant="outline"
+        onClick={handleCVAction}
+        className="w-full border-2 border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-black transition-all duration-300 font-mono text-lg py-4 px-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+        delay={4700}
+        speed={25}
+        textType="terminal"
+      >
+      📄 Download CV
+      </TerminalButton>
+      
+      {/* Additional Info */}
+      <div className="mt-2 text-center">
+        <p className="text-xs text-emerald-600/70 dark:text-green-400/70 font-mono">
+          Click to download or view CV in new tab
+        </p>
+      </div>
+    </div>
   );
 }

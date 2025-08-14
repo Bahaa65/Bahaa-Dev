@@ -7,6 +7,7 @@ import { TerminalText } from "@/components/typewriter-text";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalSection } from "@/components/ui/terminal-section";
 import { TechIconsGrid } from "@/components/sections/tech-icons-grid";
+import { TerminalCVButton } from "@/components/ui/terminal-cv-button";
 import dynamic from "next/dynamic";
 import { initPerformanceTracking } from "@/lib/performance";
 
@@ -25,7 +26,7 @@ const InlineTerminal = dynamic(
   () => import("@/components/terminal/inline-terminal").then(m => m.InlineTerminal),
   { 
     ssr: false, 
-    loading: () => <div className="h-32 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200/50 dark:border-green-400/30 flex items-center justify-center">
+    loading: () => <div className="h-32 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-400/30 flex items-center justify-center">
       <TerminalText text="Loading Terminal..." className="text-emerald-600 dark:text-green-400" />
     </div>
   }
@@ -111,6 +112,11 @@ export function HomePageClient() {
                 <InlineTerminal />
               </Suspense>
             </TerminalSection>
+
+            {/* Download CV Button */}
+            <div className="mt-4">
+              <TerminalCVButton />
+            </div>
           </div>
         </FadeIn>
 

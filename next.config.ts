@@ -17,14 +17,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   webpack: (config, { isServer, dev }) => {
-    // Tree shaking optimization
-    config.optimization = {
-      ...config.optimization,
-      usedExports: true,
-      sideEffects: false,
-    };
-
-    // Reduce bundle size
+    // Optimize bundle size without conflicting with Next.js
     if (!isServer && !dev) {
       config.optimization.splitChunks = {
         chunks: 'all',
