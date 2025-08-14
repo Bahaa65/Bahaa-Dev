@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BootOverlay } from "@/components/boot/boot-overlay";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { PageTracking } from "@/components/analytics/page-tracking";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -95,6 +97,8 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <GoogleAnalytics />
+          <PageTracking />
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>

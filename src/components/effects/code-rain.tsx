@@ -14,7 +14,7 @@ export function CodeRain({ height = 300, className = "" }: { height?: number; cl
     if (!ctx) return;
 
     let width = canvas.clientWidth;
-    let heightPx = height;
+    const heightPx = height;
     canvas.width = width;
     canvas.height = heightPx;
 

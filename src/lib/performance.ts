@@ -130,12 +130,7 @@ export const initPerformanceTracking = () => {
   trackPageLoad();
 };
 
-// Type declarations
-declare global {
-  interface Window {
-    gtag?: (command: string, action: string, params?: Record<string, unknown>) => void;
-  }
-}
+// Type declarations moved to gtag.d.ts
 
 // Performance API types
 interface PerformanceLayoutShiftEntry extends PerformanceEntry {

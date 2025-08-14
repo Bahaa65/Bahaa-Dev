@@ -24,6 +24,15 @@ export function ContactForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   async function onSubmit(values: FormValues) {
+    // Google Analytics Event
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'contact_form_submit', {
+        event_category: 'engagement',
+        event_label: 'contact_form',
+        value: 1
+      });
+    }
+
     await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

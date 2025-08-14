@@ -2,6 +2,7 @@
 
 import * as React from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let HowlClass: any | null = null;
 async function ensureHowler() {
   if (!HowlClass) {
@@ -43,9 +44,13 @@ export function TerminalText({
   const [charIndex, setCharIndex] = React.useState(0);
   const [isDone, setIsDone] = React.useState(false);
   const [showCursorState, setShowCursor] = React.useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const soundRef = React.useRef<any | null>(null);
 
-  const textArray = Array.isArray(text) ? text : [text];
+  const textArray = React.useMemo(() => 
+    Array.isArray(text) ? text : [text], 
+    [text]
+  );
 
   React.useEffect(() => {
     if (type === "instant") {
