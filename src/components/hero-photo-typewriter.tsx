@@ -66,13 +66,12 @@ export function HeroPhotoTypewriter({ photoUrl = "/avatar.jpg", lines, typingSpe
         <Sheet>
           <SheetTrigger asChild>
             <div className="relative w-36 h-36 rounded-full border-4 border-emerald-400/80 dark:border-green-400/80 shadow-[0_0_30px_rgba(16,185,129,0.4)] dark:shadow-[0_0_30px_rgba(74,222,128,0.4)] overflow-hidden bg-gray-100 dark:bg-gray-800 z-10 cursor-pointer hover:scale-105 transition-transform duration-200 hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] dark:hover:shadow-[0_0_40px_rgba(74,222,128,0.6)]">
-              <Image 
+              <img 
                 src={photoUrl} 
                 alt="Bahaa Gaballah - Profile" 
                 width={144}
                 height={144}
                 className="object-cover"
-                priority
                 onError={(e) => {
                   console.error('Failed to load profile image:', photoUrl);
                   // Fallback to a default image or text
@@ -96,13 +95,12 @@ export function HeroPhotoTypewriter({ photoUrl = "/avatar.jpg", lines, typingSpe
                 <p className="text-emerald-600/80 dark:text-green-300/80 text-sm">Software Engineer</p>
               </div>
               <div className="relative w-80 h-80 rounded-full border-4 border-emerald-500/60 dark:border-green-400/60 shadow-[0_0_50px_rgba(16,185,129,0.4)] dark:shadow-[0_0_50px_rgba(74,222,128,0.4)] overflow-hidden bg-gray-100 dark:bg-gray-800">
-                <Image 
+                <img 
                   src={photoUrl} 
                   alt="Profile - Enlarged" 
                   width={320}
                   height={320}
                   className="object-cover"
-                  priority
                 />
               </div>
               <div className="mt-6 text-center">
