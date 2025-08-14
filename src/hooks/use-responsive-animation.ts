@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface DeviceInfo {
   isMobile: boolean;
@@ -71,7 +71,8 @@ export function useResponsiveAnimation(customConfig?: Partial<AnimationConfig>) 
     prefersReducedMotion: false,
   });
 
-  const config = { ...defaultAnimationConfig, ...customConfig };
+  // Use useMemo to prevent config from changing on every render
+  const config = useMemo(() => ({ ...defaultAnimationConfig, ...customConfig }), [customConfig]);
 
   // Detect device type and capabilities
   useEffect(() => {

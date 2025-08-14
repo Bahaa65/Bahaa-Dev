@@ -4,27 +4,19 @@ import { cn } from '@/lib/utils';
 interface ResponsiveContainerProps {
   children: React.ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
   animation?: 'fade-in' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'scale-in' | 'rotate-in';
   delay?: number;
   duration?: 'fast' | 'normal' | 'slow';
   hover?: 'scale' | 'rotate' | 'lift' | 'glow' | 'none';
-  responsive?: {
-    mobile?: string;
-    tablet?: string;
-    desktop?: string;
-  };
 }
 
 export function ResponsiveContainer({
   children,
   className,
-  as: Component = 'div',
   animation = 'fade-in',
   delay = 0,
   duration = 'normal',
   hover = 'scale',
-  responsive,
   ...props
 }: ResponsiveContainerProps) {
   // Animation classes
@@ -53,13 +45,6 @@ export function ResponsiveContainer({
     glow: 'hover:shadow-lg hover:shadow-emerald-500/25 transition-all',
     none: '',
   };
-
-  // Responsive classes
-  const responsiveClasses = responsive ? {
-    mobile: responsive.mobile || '',
-    tablet: responsive.tablet || '',
-    desktop: responsive.desktop || '',
-  } : {};
 
   const baseClasses = cn(
     // Base responsive container
@@ -91,13 +76,13 @@ export function ResponsiveContainer({
   const style = delay > 0 ? { animationDelay: `${delay}ms` } : {};
 
   return (
-    <Component
+    <div
       className={baseClasses}
       style={style}
       {...props}
     >
       {children}
-    </Component>
+    </div>
   );
 }
 

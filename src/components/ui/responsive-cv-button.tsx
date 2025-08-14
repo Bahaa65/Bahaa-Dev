@@ -5,7 +5,7 @@ import { ResponsiveButton } from './responsive-container';
 import { useResponsiveAnimationContext } from '../providers/responsive-animation-provider';
 
 export function ResponsiveCVButton() {
-  const { isMobile, isTablet, isDesktop } = useResponsiveAnimationContext();
+  const { isMobile, isTablet } = useResponsiveAnimationContext();
 
   const handleCVAction = () => {
     // Open CV in new tab

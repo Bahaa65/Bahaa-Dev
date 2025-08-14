@@ -14,16 +14,33 @@ interface ResponsiveAnimationContextType {
     orientation: 'portrait' | 'landscape';
     prefersReducedMotion: boolean;
   };
-  getCurrentConfig: () => any;
-  getAnimationStyles: () => any;
+  getCurrentConfig: () => {
+    duration: number;
+    delay: number;
+    scale: number;
+    translateY: number;
+    rotate: number;
+  };
+  getAnimationStyles: () => Record<string, string>;
   getAnimationClasses: (baseClass: string) => string;
   getHoverClasses: (type: 'scale' | 'lift' | 'rotate' | 'glow') => string;
   getTouchClasses: () => string;
-  getSpacingClasses: (type: 'padding' | 'margin' | 'gap') => any;
+  getSpacingClasses: (type: 'padding' | 'margin' | 'gap') => {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
   getTextClasses: (sizes: { mobile: string; tablet: string; desktop: string }) => string;
   getGridClasses: (cols: { mobile: number; tablet: number; desktop: number }) => string;
   shouldAnimate: () => boolean;
-  getPerformanceSettings: () => any;
+  getPerformanceSettings: () => {
+    willChange: string;
+    backfaceVisibility: 'hidden';
+    perspective: string;
+    transformStyle: 'preserve-3d';
+    transitionDuration: string;
+    transitionDelay: string;
+  };
   isMobile: boolean;
   isTablet: boolean;
   isDesktop: boolean;
@@ -35,7 +52,11 @@ const ResponsiveAnimationContext = createContext<ResponsiveAnimationContextType 
 
 interface ResponsiveAnimationProviderProps {
   children: ReactNode;
-  customConfig?: any;
+  customConfig?: Partial<{
+    mobile: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+    tablet: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+    desktop: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+  }>;
 }
 
 export function ResponsiveAnimationProvider({ 
@@ -62,7 +83,11 @@ export function useResponsiveAnimationContext() {
 // Higher-order component for responsive animations
 export function withResponsiveAnimation<P extends object>(
   Component: React.ComponentType<P>,
-  animationConfig?: any
+  animationConfig?: Partial<{
+    mobile: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+    tablet: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+    desktop: { duration: number; delay: number; scale: number; translateY: number; rotate: number };
+  }>
 ) {
   return function ResponsiveAnimationWrapper(props: P) {
     return (

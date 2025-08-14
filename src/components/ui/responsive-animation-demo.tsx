@@ -8,12 +8,8 @@ export function ResponsiveAnimationDemo() {
   const {
     isMobile,
     isTablet,
-    isDesktop,
     isTouch,
     prefersReducedMotion,
-    getHoverClasses,
-    getTouchClasses,
-    getAnimationClasses,
   } = useResponsiveAnimationContext();
 
   return (
@@ -56,100 +52,82 @@ export function ResponsiveAnimationDemo() {
       {/* Animation Examples Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Fade In Animation */}
-        <ResponsiveCard
-          animation="fade-in"
-          delay={0}
-          hover="scale"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">✨</div>
-            <h3 className="text-lg font-semibold">Fade In</h3>
-            <p className="text-sm text-muted-foreground">
-              Smooth fade in animation with responsive timing
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="fade-in" delay={0} hover="scale">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">✨</div>
+              <h3 className="text-lg font-semibold">Fade In</h3>
+              <p className="text-sm text-muted-foreground">
+                Smooth fade in animation with responsive timing
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
 
         {/* Slide Up Animation */}
-        <ResponsiveCard
-          animation="slide-up"
-          delay={100}
-          hover="lift"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">🚀</div>
-            <h3 className="text-lg font-semibold">Slide Up</h3>
-            <p className="text-sm text-muted-foreground">
-              Slides up from bottom with device-specific delays
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="slide-up" delay={100} hover="lift">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">🚀</div>
+              <h3 className="text-lg font-semibold">Slide Up</h3>
+              <p className="text-sm text-muted-foreground">
+                Slides up from bottom with device-specific delays
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
 
         {/* Scale In Animation */}
-        <ResponsiveCard
-          animation="scale-in"
-          delay={200}
-          hover="glow"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">🎪</div>
-            <h3 className="text-lg font-semibold">Scale In</h3>
-            <p className="text-sm text-muted-foreground">
-              Scales in from center with responsive scaling
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="scale-in" delay={200} hover="glow">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">🎪</div>
+              <h3 className="text-lg font-semibold">Scale In</h3>
+              <p className="text-sm text-muted-foreground">
+                Scales in from center with responsive scaling
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
 
         {/* Rotate In Animation */}
-        <ResponsiveCard
-          animation="rotate-in"
-          delay={300}
-          hover="rotate"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">🔄</div>
-            <h3 className="text-lg font-semibold">Rotate In</h3>
-            <p className="text-sm text-muted-foreground">
-              Rotates in with device-specific rotation angles
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="rotate-in" delay={300} hover="rotate">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">🔄</div>
+              <h3 className="text-lg font-semibold">Rotate In</h3>
+              <p className="text-sm text-muted-foreground">
+                Rotates in with device-specific rotation angles
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
 
         {/* Bounce Animation */}
-        <ResponsiveCard
-          animation="bounce-gentle"
-          delay={400}
-          hover="scale"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">🎈</div>
-            <h3 className="text-lg font-semibold">Bounce</h3>
-            <p className="text-sm text-muted-foreground">
-              Gentle bouncing with responsive duration
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="fade-in" delay={400} hover="scale">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">🎈</div>
+              <h3 className="text-lg font-semibold">Bounce</h3>
+              <p className="text-sm text-muted-foreground">
+                Gentle bouncing with responsive duration
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
 
         {/* Float Animation */}
-        <ResponsiveCard
-          animation="float"
-          delay={500}
-          hover="lift"
-          className="text-center"
-        >
-          <div className="space-y-4">
-            <div className="text-4xl">🌊</div>
-            <h3 className="text-lg font-semibold">Float</h3>
-            <p className="text-sm text-muted-foreground">
-              Floating motion with device-optimized timing
-            </p>
-          </div>
-        </ResponsiveCard>
+        <ResponsiveContainer animation="fade-in" delay={500} hover="lift">
+          <ResponsiveCard hover={true} className="text-center">
+            <div className="space-y-4">
+              <div className="text-4xl">🌊</div>
+              <h3 className="text-lg font-semibold">Float</h3>
+              <p className="text-sm text-muted-foreground">
+                Floating motion with device-optimized timing
+              </p>
+            </div>
+          </ResponsiveCard>
+        </ResponsiveContainer>
       </div>
 
       {/* Interactive Buttons */}
