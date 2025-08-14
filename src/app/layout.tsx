@@ -19,6 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bahaa-dev.vercel.app'),
   title: "Bahaa Gaballah | Full Stack Developer & Software Engineer",
   description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, TypeScript, and cloud technologies. Portfolio showcasing professional projects and expertise.",
   keywords: ["Bahaa Gaballah", "Full Stack Developer", "Software Engineer", "React Developer", "Next.js", "TypeScript", "Node.js", "Frontend Developer", "Backend Developer", "Web Developer", "Portfolio"],
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bahaa Gaballah | Full Stack Developer & Software Engineer",
     description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, TypeScript, and cloud technologies.",
-    url: "https://bahaagaballah.com",
+    url: "https://bahaa-dev.vercel.app",
     siteName: "Bahaa Gaballah Portfolio",
     images: [
       {
