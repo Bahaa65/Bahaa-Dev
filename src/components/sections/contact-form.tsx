@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { TerminalButton } from "@/components/ui/terminal-button";
+import { useState } from "react";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -16,29 +17,53 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export function ContactForm() {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   async function onSubmit(values: FormValues) {
-    // Google Analytics Event
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'contact_form_submit', {
-        event_category: 'engagement',
-        event_label: 'contact_form',
-        value: 1
-      });
-    }
+    try {
+      setSubmitStatus('idle');
+      setErrorMessage('');
 
-    await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    reset();
+      // Google Analytics Event
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'contact_form_submit', {
+          event_category: 'engagement',
+          event_label: 'contact_form',
+          value: 1
+        });
+      }
+
+      console.log('Sending contact form:', values);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+      console.log('Contact form response:', result);
+
+      if (response.ok && result.ok) {
+        setSubmitStatus('success');
+        reset();
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+    }
   }
 
   return (
@@ -74,15 +99,23 @@ export function ContactForm() {
         disabled={isSubmitting} 
         variant="outline"
         className="w-full border-emerald-500 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-black transition-all"
-        delay={1000}
-        speed={25}
-        textType="terminal"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </TerminalButton>
-      {isSubmitSuccessful ? (
-        <p className="text-sm text-emerald-700 dark:text-green-400">Thanks! I will get back to you soon.</p>
-      ) : null}
+      
+      {/* Success Message */}
+      {submitStatus === 'success' && (
+        <p className="text-sm text-emerald-700 dark:text-green-400 bg-emerald-50 dark:bg-green-900/20 p-3 rounded border border-emerald-200 dark:border-green-800">
+          ✅ Thanks! I will get back to you soon.
+        </p>
+      )}
+      
+      {/* Error Message */}
+      {submitStatus === 'error' && (
+        <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
+          ❌ {errorMessage}
+        </p>
+      )}
     </form>
   );
 }
