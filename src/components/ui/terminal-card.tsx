@@ -35,9 +35,9 @@ export function TerminalCard({
   variant = "default"
 }: TerminalCardProps) {
   const variants = {
-    default: "rounded-lg border border-emerald-500/40 dark:border-green-400/30 bg-white dark:bg-black p-6 shadow-sm",
-    border: "rounded-lg border-2 border-emerald-500/60 dark:border-green-400/60 bg-emerald-50/40 dark:bg-black/50 p-6",
-    elevated: "rounded-lg border border-emerald-500/40 dark:border-green-400/30 bg-white dark:bg-black p-6 shadow-lg hover:shadow-xl transition-shadow"
+    default: "rounded-lg border border-emerald-500/40 dark:border-green-400/30 bg-transparent p-6 shadow-sm",
+    border: "rounded-lg border-2 border-emerald-500/60 dark:border-green-400/60 bg-transparent p-6",
+    elevated: "rounded-lg border border-emerald-500/40 dark:border-green-400/30 bg-transparent p-6 shadow-lg hover:shadow-xl transition-shadow"
   } as const;
 
   const fadeInDelaySeconds = Math.max(0, titleDelay) / 1000;

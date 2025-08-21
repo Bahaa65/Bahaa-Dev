@@ -1,12 +1,14 @@
 import { FadeIn } from "@/components/motion/fade-in";
 import { TerminalText } from "@/components/typewriter-text";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 
 type Item = {
   title: string;
   subtitle?: string;
   period: string;
   bullets?: string[];
+  tags?: string[];
 };
 
 export function Timeline({ 
@@ -67,6 +69,15 @@ export function Timeline({
                         showCursor={false}
                         className="text-sm text-emerald-600/70 dark:text-green-400/70"
                       />
+                      {item.tags && item.tags.length ? (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {item.tags.map((tag, i) => (
+                            <Badge key={i} variant="secondary" className="border-emerald-500/30 dark:border-green-400/30 bg-emerald-100/40 dark:bg-green-400/10 text-emerald-700 dark:text-green-300">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
                   </TooltipTrigger>
                   {story ? (

@@ -7,7 +7,7 @@ import { TerminalText } from "@/components/typewriter-text";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalSection } from "@/components/ui/terminal-section";
 import { TechIconsGrid } from "@/components/sections/tech-icons-grid";
-import { TerminalCVButton } from "@/components/ui/terminal-cv-button";
+import { TerminalCVButton, TerminalOfficialButton } from "@/components/ui/terminal-cv-button";
 import dynamic from "next/dynamic";
 import { initPerformanceTracking } from "@/lib/performance";
 
@@ -68,7 +68,7 @@ export function HomePageClient() {
     <TerminalShell>
       {/* Terminal Header */}
       <div className="text-center mb-12">
-        <div className="inline-block border border-emerald-500 dark:border-green-400 px-6 py-2 rounded-t-lg bg-white dark:bg-black">
+        <div className="inline-block border border-emerald-500 dark:border-green-400 px-6 py-2 rounded-t-lg bg-transparent">
           <TerminalText 
             text="BAHAA_PORTFOLIO.exe" 
             className="text-emerald-700 dark:text-green-400 text-lg font-bold"
@@ -76,7 +76,7 @@ export function HomePageClient() {
             speed={40}
           />
         </div>
-        <div className="border border-emerald-500 dark:border-green-400 border-t-0 px-6 py-3 bg-white dark:bg-black rounded-b-lg">
+        <div className="border border-emerald-500 dark:border-green-400 border-t-0 px-6 py-3 bg-transparent rounded-b-lg">
           <TerminalText 
             text="Loading system... Ready." 
             className="text-emerald-700/80 dark:text-green-400/80 text-sm"
@@ -113,9 +113,10 @@ export function HomePageClient() {
               </Suspense>
             </TerminalSection>
 
-            {/* Download CV Button */}
-            <div className="mt-4">
+            {/* Download Buttons */}
+            <div className="mt-4 space-y-3">
               <TerminalCVButton />
+              <TerminalOfficialButton />
             </div>
           </div>
         </FadeIn>
