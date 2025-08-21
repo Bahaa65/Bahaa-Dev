@@ -38,6 +38,24 @@ export const skillsData: SkillCategory[] = [
     ]
   },
   {
+    name: "AI, ML & Data Science",
+    skills: [
+      "Python",
+      "Data Analytics",
+      "Scikit-learn",
+      "TensorFlow",
+      "PyTorch",
+      "Regression Models",
+      "Support Vector Machines (SVM)",
+      "Decision Trees",
+      "Random Forests",
+      "Convolutional Neural Networks (CNN)",
+      "Recurrent Neural Networks (RNN)",
+      "Large Language Models (LLMs)",
+      "Jupyter Notebook"
+    ]
+  },
+  {
     name: "Computer Science & Software Engineering",
     skills: [
       "Data Structures",
@@ -103,6 +121,9 @@ export const skillsData: SkillCategory[] = [
     name: "Other Skills",
     skills: [
       "Embedded Systems",
+      "Embedded C",
+      "Arduino",
+      "ATmega328 Architecture",
       "Electronics Design",
       "Data Analysis",
       "Problem-Solving",
@@ -172,6 +193,7 @@ export const skills = [
   "Next.js",
   "Angular",
   "TypeScript",
+  "Python",
   "Node.js",
   "MySQL",
   "AWS",
@@ -180,6 +202,11 @@ export const skills = [
   "Figma",
   "UI/UX Design",
   "Embedded Systems",
+  "Arduino",
+  "TensorFlow",
+  "PyTorch",
+  "Scikit-learn",
+  "Jupyter Notebook",
   "Cloud Computing",
   "RxJS",
 ] as const;

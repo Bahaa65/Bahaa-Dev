@@ -53,10 +53,10 @@ export default function AchievementsPage() {
   return (
     <TerminalShell>
       <div className="mb-8 text-center">
-        <div className="inline-block border border-emerald-500 dark:border-green-400 px-6 py-2 rounded-t-lg bg-white dark:bg-black">
+        <div className="inline-block border border-emerald-500 dark:border-green-400 px-6 py-2 rounded-t-lg bg-transparent">
           <TerminalText text="ACHIEVEMENTS.sys" className="font-bold" speed={40} />
         </div>
-        <div className="border border-emerald-500 dark:border-green-400 border-t-0 px-6 py-3 bg-white dark:bg-black rounded-b-lg">
+        <div className="border border-emerald-500 dark:border-green-400 border-t-0 px-6 py-3 bg-transparent rounded-b-lg">
           <TerminalText text="Loading achievements... OK" className="text-emerald-700/80 dark:text-green-400/80 text-sm" delay={600} />
         </div>
       </div>
