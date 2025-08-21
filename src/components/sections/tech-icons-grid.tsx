@@ -50,7 +50,6 @@ function TechIcon({ name, primary, fallbacks = [], className = "" }: { name: str
       alt={name}
       className={className}
       referrerPolicy="no-referrer"
-      crossOrigin="anonymous"
       loading="lazy"
       decoding="async"
       onError={() => setSrcIndex((i) => i + 1)}
@@ -88,7 +87,7 @@ const techs: Tech[] = [
   { name: "RxJS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rxjs/rxjs-original.svg" },
   { name: "NgRx", src: "https://cdn.simpleicons.org/ngrx" },
   { name: "Ionic", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" },
-  { name: "Nx", src: "https://nx.dev/logo.svg", className: "dark:invert" },
+  { name: "Nx", src: "https://www.svgrepo.com/show/354109/nx.svg", className: "dark:invert" },
   // Testing & QA
   { name: "Jest", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
   { name: "Cypress", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" },
