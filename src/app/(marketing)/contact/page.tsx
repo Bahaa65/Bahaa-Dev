@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/components/sections/contact-form";
+import dynamic from "next/dynamic";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalText } from "@/components/typewriter-text";
 import { TerminalSection } from "@/components/ui/terminal-section";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ContactForm = dynamic(() => import("@/components/sections/contact-form").then(m => m.ContactForm), {
+  loading: () => <Skeleton className="h-64" />
+});
 
 export const metadata: Metadata = {
   title: "Contact | Bahaa Akl",
@@ -58,5 +63,6 @@ export default function ContactPage() {
     </TerminalShell>
   );
 }
+
 
 

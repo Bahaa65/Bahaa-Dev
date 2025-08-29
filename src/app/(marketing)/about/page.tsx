@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Separator } from "@/components/ui/separator";
-import { Timeline } from "@/components/sections/timeline";
+import dynamic from "next/dynamic";
 import { education } from "@/data/education";
 import { skillsData, softSkillsData } from "@/data/skills";
 import { Badge } from "@/components/ui/badge";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalText } from "@/components/typewriter-text";
 import { TerminalSection } from "@/components/ui/terminal-section";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const Timeline = dynamic(() => import("@/components/sections/timeline").then(m => m.Timeline), {
+  loading: () => <Skeleton className="h-40" />
+});
 
 export const metadata: Metadata = {
   title: "About | Bahaa Akl",
@@ -26,7 +30,6 @@ export default function AboutPage() {
       </div>
 
       <div className="space-y-10">
-        {/* Bio */}
         <TerminalSection
           title="> BIO"
           variant="border"
@@ -52,7 +55,6 @@ export default function AboutPage() {
           </div>
         </TerminalSection>
 
-        {/* Education */}
         <TerminalSection
           title="> EDUCATION"
           variant="border"
@@ -70,7 +72,6 @@ export default function AboutPage() {
           />
         </TerminalSection>
 
-        {/* Technical Skills */}
         <TerminalSection
           title="> TECHNICAL SKILLS"
           variant="border"
@@ -100,7 +101,6 @@ export default function AboutPage() {
           </div>
         </TerminalSection>
 
-        {/* Core Soft Skills */}
         <TerminalSection
           title="> CORE SOFT SKILLS"
           variant="border"
@@ -130,7 +130,6 @@ export default function AboutPage() {
           </div>
         </TerminalSection>
 
-        {/* Selected Achievements */}
         <TerminalSection
           title="> SELECTED ACHIEVEMENTS"
           variant="border"
@@ -193,5 +192,6 @@ export default function AboutPage() {
     </TerminalShell>
   );
 }
+
 
 

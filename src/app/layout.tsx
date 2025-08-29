@@ -104,8 +104,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#10b981" />
         <meta name="msapplication-TileColor" content="#10b981" />
         <meta name="apple-mobile-web-app-title" content="Bahaa Gaballah" />
-        <link rel="icon" href="/vercel.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/vercel.svg" />
+        <link rel="icon" href="/avatar.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/avatar.jpg" />
         <link rel="manifest" href="/site.webmanifest" />
         
         {/* Google Search Console Verification */}

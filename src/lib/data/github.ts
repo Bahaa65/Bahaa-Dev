@@ -1,0 +1,1 @@
+export { githubProjects as default } from "@/data/github-projects";

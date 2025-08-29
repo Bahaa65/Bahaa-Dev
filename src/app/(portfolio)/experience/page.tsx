@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Timeline } from "@/components/sections/timeline";
+import dynamic from "next/dynamic";
 import { experiences } from "@/data/experience";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalText } from "@/components/typewriter-text";
 import { TerminalSection } from "@/components/ui/terminal-section";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const Timeline = dynamic(() => import("@/components/sections/timeline").then(m => m.Timeline), {
+  loading: () => <Skeleton className="h-40" />
+});
 
 export const metadata: Metadata = {
   title: "Experience | Bahaa Akl",
@@ -45,5 +50,6 @@ export default function ExperiencePage() {
     </TerminalShell>
   );
 }
+
 
 

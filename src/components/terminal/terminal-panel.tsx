@@ -128,7 +128,7 @@ export function TerminalPanel() {
   };
 
   return (
-    <div className="rounded-lg border border-emerald-500/60 dark:border-green-400/60 bg-emerald-50/60 dark:bg-black/70 p-3">
+    <div className="rounded-lg border border-emerald-500/60 dark:border-green-400/60 bg-emerald-50/60 dark:bg-black/70 p-3" data-hist-index={histIndex}>
       <div className="h-32 overflow-y-auto font-mono text-sm text-emerald-700 dark:text-green-400 space-y-1 pr-1">
         {logs.map((line, idx) => (
           <div key={idx} className="whitespace-pre-wrap">

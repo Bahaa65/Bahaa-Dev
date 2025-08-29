@@ -6,7 +6,19 @@ import { HeroPhotoTypewriter } from "@/components/hero-photo-typewriter";
 import { TerminalText } from "@/components/typewriter-text";
 import { TerminalShell } from "@/components/terminal/terminal-shell";
 import { TerminalSection } from "@/components/ui/terminal-section";
-import { TechIconsGrid } from "@/components/sections/tech-icons-grid";
+import { WhenVisible } from "@/components/ui/when-visible";
+// Lazy-load TechIconsGrid to reduce initial JS
+const TechIconsGrid = dynamic(
+  () => import("@/components/sections/tech-icons-grid").then(m => m.TechIconsGrid),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-40 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200/50 dark:border-green-400/30 flex items-center justify-center">
+        <TerminalText text="Loading Tech Icons..." className="text-emerald-600 dark:text-green-400" />
+      </div>
+    ),
+  }
+);
 import { TerminalCVButton, TerminalOfficialButton } from "@/components/ui/terminal-cv-button";
 import dynamic from "next/dynamic";
 import { initPerformanceTracking } from "@/lib/performance";
@@ -90,7 +102,9 @@ export function HomePageClient() {
         {/* Particle background behind left column only */}
         <div className="absolute inset-0 -z-10 pointer-events-none hidden md:block">
           <Suspense fallback={<div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-50/20 to-green-50/20 dark:from-emerald-900/10 dark:to-green-900/10" />}>
-            <ThreeParticlesBackground />
+            <WhenVisible placeholder={<div className="absolute inset-0 -z-10" />}>
+              <ThreeParticlesBackground />
+            </WhenVisible>
           </Suspense>
         </div>
         {/* Left Column - Photo & Hero */}
@@ -124,7 +138,9 @@ export function HomePageClient() {
         {/* Right Column - Skills (Icons) */}
         <div className="space-y-6 relative">
           <Suspense fallback={<div className="absolute inset-0 -z-10" />}>
-            <ConstellationCanvas className="absolute inset-0 -z-10 hidden md:block" />
+            <WhenVisible placeholder={<div className="absolute inset-0 -z-10" />}>
+              <ConstellationCanvas className="absolute inset-0 -z-10 hidden md:block" />
+            </WhenVisible>
           </Suspense>
           <TerminalSection
             title="system.tech"
@@ -159,11 +175,17 @@ export function HomePageClient() {
           >
             <div className="space-y-3">
               <TerminalText text="Visualizing skill clusters" delay={5400} speed={22} type="terminal" showCursor={false} />
-              <Suspense fallback={<div className="h-96 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200/50 dark:border-green-400/30 flex items-center justify-center">
-                <TerminalText text="Loading Skills Radar..." className="text-emerald-600 dark:text-green-400" />
-              </div>}>
-                <SkillsRadar />
-              </Suspense>
+              <WhenVisible
+                placeholder={<div className="h-96 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200/50 dark:border-green-400/30 flex items-center justify-center">
+                  <TerminalText text="Loading Skills Radar..." className="text-emerald-600 dark:text-green-400" />
+                </div>}
+              >
+                <Suspense fallback={<div className="h-96 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg border border-emerald-200/50 dark:border-green-400/30 flex items-center justify-center">
+                  <TerminalText text="Loading Skills Radar..." className="text-emerald-600 dark:text-green-400" />
+                </div>}>
+                  <SkillsRadar />
+                </Suspense>
+              </WhenVisible>
             </div>
           </TerminalSection>
         </div>

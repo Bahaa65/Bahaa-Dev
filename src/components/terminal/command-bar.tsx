@@ -32,7 +32,7 @@ export function TerminalCommandBar({ variant = "fixed", className = "" }: Props)
   const router = useRouter();
   const [input, setInput] = React.useState("");
   const [history, setHistory] = React.useState<string[]>([]);
-  const [histIndex, setHistIndex] = React.useState<number>(-1);
+  const [, setHistIndex] = React.useState<number>(-1);
   const [logs, setLogs] = React.useState<string[]>([
     "Terminal ready. Type 'help' to list commands.",
   ]);
@@ -140,7 +140,7 @@ export function TerminalCommandBar({ variant = "fixed", className = "" }: Props)
     }
   };
 
-  const Container = ({ children }: { children: React.ReactNode }) => (
+  const Container = () => (
     <div className={`pointer-events-auto rounded-lg border border-emerald-500/60 dark:border-green-400/60 bg-emerald-50/60 dark:bg-black/70 p-3 ${className}`}>
       <div className="h-32 overflow-y-auto font-mono text-sm text-emerald-700 dark:text-green-400 space-y-1 pr-1">
         {logs.map((line, idx) => (
@@ -163,14 +163,14 @@ export function TerminalCommandBar({ variant = "fixed", className = "" }: Props)
   );
 
   if (variant === "inline") {
-    return <Container>{null}</Container>;
+    return <Container />;
   }
 
   // fixed variant (always shown, no toggle)
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-3 pointer-events-none">
       <div className="mx-auto max-w-6xl pointer-events-auto">
-        <Container>{null}</Container>
+        <Container />
       </div>
     </div>
   );

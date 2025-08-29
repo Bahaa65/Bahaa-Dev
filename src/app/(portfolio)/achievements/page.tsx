@@ -31,20 +31,16 @@ function ProgressRing({ pct = 80 }: { pct?: number }) {
 }
 
 function deriveScores(title: string, year?: string, skills?: string[]) {
-  // Heuristic scoring: recency + impact keywords + skill breadth
   const now = new Date().getFullYear();
   const y = year ? parseInt(year, 10) : now;
-  const recency = Math.max(0, 1 - Math.min(5, now - y) / 5); // 0..1 over last 5 years
-
+  const recency = Math.max(0, 1 - Math.min(5, now - y) / 5);
   const impactKeywords = ["National", "Finalist", "Medalist", "Leader", "Leadership", "Research", "Publication", "Cloud", "Competition"];
   const impactHits = impactKeywords.reduce((acc, kw) => acc + (title.toLowerCase().includes(kw.toLowerCase()) ? 1 : 0), 0);
   const impact = Math.min(1, impactHits / 3);
-
   const breadth = Math.min(1, (skills?.length ?? 0) / 5);
-
-  const score = 0.5 * recency + 0.3 * impact + 0.2 * breadth; // 0..1
+  const score = 0.5 * recency + 0.3 * impact + 0.2 * breadth;
   const progressPct = Math.round(score * 100);
-  const xp = Math.round(100 + score * 200); // 100..300
+  const xp = Math.round(100 + score * 200);
   const level = Math.max(1, Math.min(10, Math.round(2 + score * 8)));
   return { progressPct, xp, level };
 }
@@ -103,5 +99,6 @@ export default function AchievementsPage() {
     </TerminalShell>
   );
 }
+
 
 
