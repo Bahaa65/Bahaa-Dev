@@ -6,7 +6,7 @@ import { TerminalSection } from "@/components/ui/terminal-section";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ContactForm = dynamic(() => import("@/components/sections/contact-form").then(m => m.ContactForm), {
-  loading: () => <Skeleton className="h-64" />
+  loading: () => null
 });
 
 export const metadata: Metadata = {

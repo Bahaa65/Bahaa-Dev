@@ -98,7 +98,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preload" href="/avatar.jpg" as="image" />
+        
         
         {/* Theme & Icons */}
         <meta name="theme-color" content="#10b981" />

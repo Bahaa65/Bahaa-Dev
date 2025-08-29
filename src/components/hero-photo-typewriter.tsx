@@ -72,7 +72,6 @@ export function HeroPhotoTypewriter({ photoUrl = "/avatar.jpg", lines, typingSpe
                 width={144}
                 height={144}
                 className="object-cover"
-                priority
               />
               {/* Click indicator */}
               <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">

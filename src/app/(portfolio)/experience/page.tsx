@@ -7,7 +7,7 @@ import { TerminalSection } from "@/components/ui/terminal-section";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Timeline = dynamic(() => import("@/components/sections/timeline").then(m => m.Timeline), {
-  loading: () => <Skeleton className="h-40" />
+  loading: () => null
 });
 
 export const metadata: Metadata = {
