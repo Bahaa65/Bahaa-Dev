@@ -83,6 +83,7 @@ function Particles() {
 
 export function ThreeParticlesBackground() {
   const [isMobile, setIsMobile] = React.useState(false);
+  const [contextLost, setContextLost] = React.useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -96,6 +97,7 @@ export function ThreeParticlesBackground() {
 
   return (
     <div className="absolute inset-0 -z-10">
+      {!contextLost && (
       <Canvas 
         camera={{ position: [0, 0, isMobile ? 6 : 8] }} 
         dpr={[1, 2]}
@@ -103,10 +105,15 @@ export function ThreeParticlesBackground() {
           opacity: isMobile ? 0.7 : 1, // Slightly reduce opacity on mobile
           filter: isMobile ? 'blur(0.5px)' : 'none' // Slight blur on mobile for performance
         }}
+        onCreated={({ gl }) => {
+          const handler = () => setContextLost(true);
+          gl.getContext().canvas.addEventListener('webglcontextlost', handler, { once: true });
+        }}
       >
         <ambientLight intensity={0.2} />
         <Particles />
       </Canvas>
+      )}
     </div>
   );
 }

@@ -85,6 +85,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const enableVercelInsights = process.env.NEXT_PUBLIC_ENABLE_VERCEL_INSIGHTS === 'true';
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -130,8 +131,8 @@ export default function RootLayout({
             <Footer />
             <GoogleAnalytics />
             <PageTracking />
-            <Analytics />
-            <SpeedInsights />
+            {enableVercelInsights ? <Analytics /> : null}
+            {enableVercelInsights ? <SpeedInsights /> : null}
           </ThemeProvider>
         </ResponsiveAnimationProvider>
       </body>
